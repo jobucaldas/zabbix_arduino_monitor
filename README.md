@@ -1,23 +1,13 @@
-sensor.im
+zabbix_arduino_monitor
 =========
 
-Embedded Zabbix Agent Sensor
 
-I created a stand alone, hardware ZABBIX Agent (running Zabbix Agent-like firmware directly on micro-controller) using Arduino Mega 2560 Board + Ethernet Shield (Wiznet W5100). This device equipped with DHT22 temperature-humidity sensor. 
+**Agente de monitoramento zabbix arduino**
 
-Current (ZSA1-E model) Features:
+Um sistema de monitoramento de temperatura e corrente de uma sala utilizando de sensores de temperatura e de corrente, o mesmo foi criado para ser utilizado em uma sala de servidor mas o mesmo não contém limitações sob o local onde pode ser implantado desde que exista a possibilidade de conexão dos sensores necessários nos locais onde eles devem medir.
 
-1. Measures temperature and humidity using calibrated digital sensor
-2. Direct monitoring with Zabbix Server (behave like Zabbix agent in passive mode)
-3. Can support PoE 802.3 (need special Ethernet Shield with PoE support)
-4. Cheap: 50~60$ for all parts price (based on Alibaba and Sparkfun prices, shipping included)
-5. Can be easy assembled (minimal soldering and enclosure modification)
-6. Web based network setting setup (save network settings in EEPROM) 
+Na implementação são utilizados sensores onewire de temperatura e sensores sct-100 de corrente para o monitoramento. Esses são conectados diretamente à placa ou em uma PCB que as conecta à placa. É importante notar que é necessaria a utilização de resistores e capacitores de acordo com o sensor que é escolhido para utilização em ambas as maneiras de implantação, sendo a PCB inclusa no projeto apenas uma versão que não necessita de fios da maneira manual, sendo por esse motivo uma placa bastante grande.
 
-<img src="https://lh3.googleusercontent.com/-27lLNB3IDv0/UJOncSsGcQI/AAAAAAABMKI/ofErJhj9w0o/s512/IMG-20121102-00209.jpg" border="0" alt="" />
+O codigo do arduino incluso no projeto se conecta à rede utilizando um shield ethernet 2 da adafruit, o mesmo deve ser configurado seguindo as instruções inclusas na pasta que inclui o código fonte, após inserido na placa o mesmo se comporta como um agente zabbix com suas keys próprias.
 
-<img src="https://lh4.googleusercontent.com/-S5GX2HO_vJ8/UJOnc_rJ0XI/AAAAAAABMKM/rm7oedOM9FI/s512/IMG-20121102-00210.jpg" border="0" alt="" />
-
-<img src="https://lh5.googleusercontent.com/-U3sJCVcWc5A/UJOrTr2ny_I/AAAAAAABMLE/BV9vmo6Qxg8/s721/temperature.jpg" border="0" alt="" />
-
-<img src="https://lh5.googleusercontent.com/-PbilnmZSago/UJOrTmpvBII/AAAAAAABMKg/PtI5rIOPOPw/s763/web-setup.PNG" border="0" alt="" />
+As keys que são utilizadas no zabbix também estão inclusas no projeto, a pasta 'zabbix_template' inclui um template que pode ser inserido em seu servidor zabbix para facilitar a conexão com o agente no arduino.
